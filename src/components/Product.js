@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ProductConsumer } from '../context'
 import PropTypes from 'prop-types'
 export default class Product extends Component {
   render() {
@@ -90,7 +89,7 @@ const ProductWrapper = styled.div`
   border: none;
   color: var(--mainWhite);
   font-size: 1.4rem;
-  border-radius: 0.5 0 0 0;
+  border-radius: 0.5rem 0 0 0;
   transform: translate(100%, 100%);
   transition: all 0.5s linear;
 }
