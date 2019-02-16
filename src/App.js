@@ -5,8 +5,9 @@ import Navbar from './components/Navbar';
 import ProductsList from './components/ProductsList';
 import Details from './components/Details';
 import Default from './components/Default';
-import Cart from './components/Cart';
+import Cart from './components/Cart/Cart';
 import {Switch, Route} from 'react-router-dom';
+import Modal from './components/Modal'
 class App extends React.Component {
   render() {
     return (
@@ -18,6 +19,7 @@ class App extends React.Component {
           <Route path="/cart" component={Cart} />
           <Route component={Default}></Route>
         </Switch>
+        <Modal/>
       </React.Fragment>
     );
   }

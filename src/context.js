@@ -10,7 +10,27 @@ class ProductProvider extends Component {
         detailProduct: detailProduct,
         cart: [],
         modalOpen: false,
-        modalProduct: detailProduct
+        modalProduct: detailProduct,
+        cartSubTotal: 0,
+        cartTax: 0,
+        cartTotal: 0
+    }
+
+    increment = (id) => {
+        console.log('increment method')
+    }
+
+    decrement = (id) => {
+        console.log('decrement method')
+    }
+
+    removeItem = (id) => {
+        console.log('remove method')
+    }
+
+    clearCart = (id) => {
+        console.log('cart was cleared');
+
     }
 
     getItem = (id) => {
@@ -27,14 +47,14 @@ class ProductProvider extends Component {
 
     openModal = id => {
         const product = this.getItem(id);
-        this.setState(() =>{
-            return {modalProduct: product, modalOpen: true}
+        this.setState(() => {
+            return { modalProduct: product, modalOpen: true }
         })
     }
 
     closeModal = () => {
         this.setState(() => {
-            return {modalOpen: false}
+            return { modalOpen: false }
         })
     }
     addToCart = id => {
@@ -61,7 +81,11 @@ class ProductProvider extends Component {
                 addToCart: this.addToCart,
                 getItem: this.getItem,
                 openModal: this.openModal,
-                closeModal: this.closeModal
+                closeModal: this.closeModal,
+                clearCart: this.clearCart,
+                increment: this.increment,
+                decrement: this.decrement,
+                removeItem: this.removeItem
 
             }}>
                 {this.props.children}
