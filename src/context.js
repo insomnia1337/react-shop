@@ -6,9 +6,11 @@ const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
     state = {
-        products: [],
+        products: [...storeProducts],
         detailProduct: detailProduct,
-        cart: []
+        cart: [],
+        modalOpen: false,
+        modalProduct: detailProduct
     }
 
     getItem = (id) => {
@@ -20,6 +22,19 @@ class ProductProvider extends Component {
         const product = this.getItem(id);
         this.setState(() => {
             return { detailProduct: product }
+        })
+    }
+
+    openModal = id => {
+        const product = this.getItem(id);
+        this.setState(() =>{
+            return {modalProduct: product, modalOpen: true}
+        })
+    }
+
+    closeModal = () => {
+        this.setState(() => {
+            return {modalOpen: false}
         })
     }
     addToCart = id => {
@@ -38,26 +53,15 @@ class ProductProvider extends Component {
         })
     }
 
-    setProducts = () => {
-        let products = [];
-        storeProducts.forEach(item => {
-            const singleItem = { ...item }
-            products = [...products, singleItem]
-        })
-        this.setState(() => {
-            return { products }
-        })
-    }
-    componentDidMount() {
-        this.setProducts();
-    }
     render() {
         return (
             <ProductContext.Provider value={{
                 ...this.state,
                 handleDetail: this.handleDetail,
                 addToCart: this.addToCart,
-                getItem: this.getItem
+                getItem: this.getItem,
+                openModal: this.openModal,
+                closeModal: this.closeModal
 
             }}>
                 {this.props.children}
